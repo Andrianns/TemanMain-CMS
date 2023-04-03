@@ -9,12 +9,10 @@ import { useState } from 'react';
 import { login } from '../store/actions';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import Swal from 'sweetalert2'
-
-
+import Swal from 'sweetalert2';
 
 export default function LoginPages() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const container = {
     padding: '150px',
   };
@@ -36,23 +34,19 @@ export default function LoginPages() {
     e.preventDefault();
     login(loginForm)
       .then(({ data }) => {
-        Swal.fire(
-          'success',
-          data.message,
-          'success'
-        )
+        Swal.fire('success', data.message, 'success');
         localStorage.setItem('access_token', data.access_token);
       })
       .then((_) => {
-        navigate('/')
+        navigate('/');
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: err.response.data.error,
-        })
+        });
       });
   };
 
@@ -62,6 +56,7 @@ export default function LoginPages() {
         <Row style={container}>
           <Col md={{ span: 7, offset: 3 }}>
             <h2 style={{ textAlign: 'center' }}>Login</h2>
+            <hr />
             <div classname="container-sm mt-5">
               <Form.Group
                 className="mb-1"
@@ -87,6 +82,7 @@ export default function LoginPages() {
                   onChange={changeInputLogin}
                 />
               </Form.Group>
+              <br />
               <Stack gap={2} direction="horizontal">
                 <Button
                   variant="primary"
@@ -96,6 +92,10 @@ export default function LoginPages() {
                   Login
                 </Button>
               </Stack>
+              <br />
+              <b class="text-danger">*Demo Account</b> <br />
+              <b class="text-danger">Email: admin1@mail.com</b> <br />
+              <b class="text-danger">Password: 12345</b>
             </div>
           </Col>
         </Row>
