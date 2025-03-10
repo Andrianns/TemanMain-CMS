@@ -7,7 +7,8 @@ import {
   EVENT_DETAILID,
 } from './actionType';
 import axios from 'axios';
-const baseURL = 'https://temanmain-orchestrator-production.up.railway.app';
+const baseURL = 'https://teman-main-orchestrator.vercel.app';
+
 export const fetchevent = (payload) => {
   return {
     type: EVENT_FETCH,
